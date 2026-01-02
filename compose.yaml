@@ -1,0 +1,61 @@
+services:
+  server:
+    image: coredns/coredns:${SERVICE_VERSION}
+    container_name: ${CONTAINER_NAME}-server
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE # required for port 53
+
+    command: -conf /etc/coredns/conf/corefile.conf
+
+    ports:
+      - "${DNS_PORT}:53/udp"
+      - "${DNS_PORT}:53/tcp"
+
+    environment:
+      TZ: ${TZ}
+
+    volumes:
+      - .docker/server/conf:/etc/coredns/conf:ro
+      - .docker/server/keys:/etc/coredns/keys:ro
+      - .docker/server/zones/signed:/etc/coredns/zones:ro # only signed zones
+
+    networks:
+      - service-net
+
+  tools:
+    build:
+      context: .docker/tools
+    container_name: ${CONTAINER_NAME}-tools
+    image: ${CONTAINER_NAME}-tools:latest
+    user: ${UID}:${GID}
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp # used to skip generation of ds files
+
+    environment:
+      TZ: ${TZ}
+
+    networks:
+      - service-net
+
+    profiles: [tools]
+
+    volumes:
+      - .docker/server/keys:/data/keys:rw
+      - .docker/server/zones/raw:/data/zones/raw:ro # no need to write on raw zones
+      - .docker/server/zones/unsigned:/data/zones/unsigned:rw
+      - .docker/server/zones/signed:/data/zones/signed:rw
+
+networks:
+  service-net:
+    name: ${SERVICE_NET}
