@@ -1,0 +1,81 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "a163ada72484910d265d8bdaebb53301",
+    "packages": [
+        {
+            "name": "tapomix/castor-tasks",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tapomix/castor-tasks.git",
+                "reference": "699b749e4c8e74bc5b063ce465c61d7c7928e56f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tapomix/castor-tasks/zipball/699b749e4c8e74bc5b063ce465c61d7c7928e56f",
+                "reference": "699b749e4c8e74bc5b063ce465c61d7c7928e56f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.90",
+                "jolicode/castor": "^1.0",
+                "phpunit/phpunit": "^12.0",
+                "rector/rector": "^2.2"
+            },
+            "type": "castor-project",
+            "autoload": {
+                "files": [
+                    "src/context.php"
+                ]
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tapomix\\Castor\\Tests\\": "tests/"
+                },
+                "files": [
+                    "tests/autoload.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tapomix",
+                    "email": "dev@tapomix.me"
+                }
+            ],
+            "description": "Collection of reusable Castor tasks",
+            "keywords": [
+                "castor",
+                "devops",
+                "docker",
+                "php",
+                "qa",
+                "task-runner",
+                "vps"
+            ],
+            "support": {
+                "source": "https://github.com/tapomix/castor-tasks/tree/0.3.0",
+                "issues": "https://github.com/tapomix/castor-tasks/issues"
+            },
+            "time": "2026-01-06T16:24:29+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
+}
